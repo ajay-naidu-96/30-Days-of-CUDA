@@ -1,4 +1,5 @@
 #include <iostream>
+#include "utils.h"
 
 using namespace std;
 
@@ -43,33 +44,37 @@ int main() {
     vec_add<<<grid_size, block_size>>>(a, b, c, N);
 
     cudaMemcpy(C, c, mem_size, cudaMemcpyDeviceToHost);
+
+    print(A, N, 1, "A");
+    print(B, N, 1, "B");
+    print(C, N, 1, "C");
     
-    cout << "Array A: " << endl;
-    cout << "[";
+    // cout << "Array A: " << endl;
+    // cout << "[";
 
-    for (size_t i=0; i < N; i++) {
-        cout << A[i] << ", ";
-    }
+    // for (size_t i=0; i < N; i++) {
+    //     cout << A[i] << ", ";
+    // }
 
-    cout << "]" << endl;
+    // cout << "]" << endl;
     
-    cout << "Array B: " << endl;
-    cout << "[";
+    // cout << "Array B: " << endl;
+    // cout << "[";
 
-    for (size_t i=0; i < N; i++) {
-        cout << B[i] << ", ";
-    }
+    // for (size_t i=0; i < N; i++) {
+    //     cout << B[i] << ", ";
+    // }
 
-    cout << "]" << endl;
+    // cout << "]" << endl;
 
-    cout << "Array C: " << endl;
-    cout << "[";
+    // cout << "Array C: " << endl;
+    // cout << "[";
 
-    for (size_t i=0; i < N; i++) {
-        cout << C[i] << ", ";
-    }
+    // for (size_t i=0; i < N; i++) {
+    //     cout << C[i] << ", ";
+    // }
 
-    cout << "]" << endl;
+    // cout << "]" << endl;
 
     cudaFree(a);
     cudaFree(b);
