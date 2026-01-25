@@ -13,9 +13,37 @@ __global__ void matrix_add(const float *A, const float *B, float *C, int N) {
     C[i*N+j] = A[i*N+j] + B[i*N+j];
 }
 
-// awfully mediocre versions
+// awfully mediocre versions depending on the machine of execution
 
-__global__ void matrix_add_
+__global__ void matrix_add_row_major(const float *A, const float *B, float *C, int N) {
+
+    size_t i = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (i >= N) {
+        return ;
+    }
+    else {
+        for (size_t j=0; j < N; j++) {
+            C[i*N+j] = A[i*N+j] + B[i*N+j];
+        }
+    }
+
+}
+
+__global__ void matrix_add_col_major(const float *A, const float *B, float *C, int N) {
+
+    size_t j = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (j >= N) {
+        return;
+    }
+    else {
+        for (size_t i = 0; i < N; i++) {
+            C[i*N+j] = A[i*N+j] + B[i*N+j];
+        }
+    }
+    
+}
 
 
 int main() {
