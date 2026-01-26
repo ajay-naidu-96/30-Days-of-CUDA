@@ -2,6 +2,8 @@
 #include "utils.h"
 #include <cuda_runtime.h>
 
+// mismatch between array types and kernel called, int num and float mul / add 
+
 __global__ void matrix_add(const float *A, const float *B, float *C, int N) {
     size_t i = blockIdx.x * blockDim.x + threadIdx.x;
     size_t j = blockIdx.y * blockDim.y + threadIdx.y;

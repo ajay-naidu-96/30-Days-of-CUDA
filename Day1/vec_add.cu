@@ -14,6 +14,8 @@ __global__ void vec_add(const float *A, const float *B, float *C, size_t N) {
 }
 
 int main() {
+
+    // mismatch between array types and kernel called, int num and float mul / add 
     
     size_t N = 10;
 
